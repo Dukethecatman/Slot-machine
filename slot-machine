@@ -1,0 +1,68 @@
+//JavaScript-C24.2.0 (SpiderMonkey)
+//print('I got bored and wrote this up');
+
+//options for the user
+let options = {
+    'max_number' : 100,
+    'Classic_Mode' : false,
+    'debug' : true,
+}
+
+//generates random numbers and saves them
+let i = 0;
+let randomNumber = [];
+while(i < 9){
+    randomNumber.push(Math.floor(Math.random() * options.max_number + 1));
+    i = i + 1
+}
+
+//Checking for matching lines
+let line = 0;
+if(options.Classic_Mode === false){
+    //left to right
+    if(randomNumber[0] === randomNumber[1] && randomNumber[1] === randomNumber[2]) line = line + 1;
+    if(randomNumber[3] === randomNumber[4] && randomNumber[4] === randomNumber[5]) line = line + 1;
+    if(randomNumber[6] === randomNumber[7] && randomNumber[7] === randomNumber[8]) line = line + 1;
+    //up to down
+    if(randomNumber[0] === randomNumber[3] && randomNumber[3] === randomNumber[6]) line = line + 1;
+    if(randomNumber[1] === randomNumber[4] && randomNumber[4] === randomNumber[7]) line = line + 1;
+    if(randomNumber[2] === randomNumber[5] && randomNumber[5] === randomNumber[8]) line = line + 1;
+    //X
+    if(randomNumber[0] === randomNumber[4] && randomNumber[4] === randomNumber[8]) line = line + 1;
+    if(randomNumber[2] === randomNumber[4] && randomNumber[4] === randomNumber[6]) line = line + 1;
+}
+else{
+    //only checks one line if in classic mode
+    if(randomNumber[3] === randomNumber[4] && randomeNumber[4] === randomNumber[5]) line = line + 1;
+}
+
+//
+let result = '';
+
+//debug stuff
+if(options.debug === true){
+    print('Debug Mode On');
+    print('Options');
+    print('Max Number : ' + options.max_number);
+    print('Matching Line Number : ' + line);
+    print('Numbers In Order ' + randomNumber);
+    print();
+}
+
+//display reult to user
+//print('Your three numbers are ' + randomNumber);
+if(options.Classic_Mode === false) print('Game Mode Normal');
+else print('Game Mode Classic');
+print('Numbers From 0 To ' + options.max_number);
+print();
+print('#################');
+print('# ' + randomNumber[0] + ' # ' + randomNumber[1] + ' # ' + randomNumber[2] + ' #');
+print('#################');
+print('#################');
+print('# ' + randomNumber[3] + ' # ' + randomNumber[4] + ' # ' + randomNumber[5] + ' #');
+print('#################');
+print('#################');
+print('# ' + randomNumber[6] + ' # ' + randomNumber[7] + ' # ' + randomNumber[8] + ' #');
+print('#################');
+print('# ' + line + ' Lines Match #');
+print('#################');
