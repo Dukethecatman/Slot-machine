@@ -5,7 +5,7 @@
 let options = {
     'max_number' : 100,
     'Classic_Mode' : false,
-    'debug' : true,
+    'debug' : false,
 }
 
 //generates random numbers and saves them
