@@ -3,22 +3,29 @@
 
 //options for the user
 let options = {
-    'max_number' : 100,
-    'Classic_Mode' : false,
-    'debug' : false,
+    'max_number' : 10,
+    'classic_mode' : false,
+    'debug' : true,
+}
+
+let debug = {
+    'force_number' : false,
+    'forced_number' : 7,
+    // not yet 'print_logic' : false,
 }
 
 //generates random numbers and saves them
 let i = 0;
 let randomNumber = [];
 while(i < 9){
-    randomNumber.push(Math.floor(Math.random() * options.max_number + 1));
+    if(options.debug === true && debug.force_number === true) randomNumber.push(debug.forced_number);
+    else randomNumber.push(Math.floor(Math.random() * options.max_number + 1));
     i = i + 1
 }
 
 //Checking for matching lines
 let line = 0;
-if(options.Classic_Mode === false){
+if(options.classic_mode === false){
     //left to right
     if(randomNumber[0] === randomNumber[1] && randomNumber[1] === randomNumber[2]) line = line + 1;
     if(randomNumber[3] === randomNumber[4] && randomNumber[4] === randomNumber[5]) line = line + 1;
@@ -33,11 +40,23 @@ if(options.Classic_Mode === false){
 }
 else{
     //only checks one line if in classic mode
-    if(randomNumber[3] === randomNumber[4] && randomeNumber[4] === randomNumber[5]) line = line + 1;
+    if(randomNumber[3] === randomNumber[4] && randomNumber[4] === randomNumber[5]) line = line + 1;
+    if(randomNumber[3] === randomNumber[4] && randomNumber[4] === randomNumber[5] && randomNumber[5] === 7) line = 'Jack Pot!!';
 }
-
-//
+// set up reult for display
 let result = '';
+if(options.classic_mode === false){
+    result = ' ' + line + " Lines Match "
+}
+else{
+    if(line === 'Jack Pot!!'){
+        result = '   Jack Pot!!  ';
+        print(result);
+    }
+    else{
+        result = 'A Winner is You';
+    }
+}
 
 //debug stuff
 if(options.debug === true){
@@ -51,7 +70,7 @@ if(options.debug === true){
 
 //display reult to user
 //print('Your three numbers are ' + randomNumber);
-if(options.Classic_Mode === false) print('Game Mode Normal');
+if(options.classic_mode === false) print('Game Mode Normal');
 else print('Game Mode Classic');
 print('Numbers From 0 To ' + options.max_number);
 print();
@@ -64,5 +83,5 @@ print('#################');
 print('#################');
 print('# ' + randomNumber[6] + ' # ' + randomNumber[7] + ' # ' + randomNumber[8] + ' #');
 print('#################');
-print('# ' + line + ' Lines Match #');
+print('#' + result + '#');
 print('#################');
